@@ -4,222 +4,1335 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Console | Dextimani Digital</title>
+
     <style>
+
         :root {
             --primary-bg: #0f172a;
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --secondary-bg: #111827;
+            --glass-bg: rgba(255,255,255,0.05);
             --accent-blue: #38bdf8;
+            --accent-purple: #8b5cf6;
             --text-main: #f1f5f9;
             --text-dim: #94a3b8;
+            --success: #4ade80;
+            --border: rgba(255,255,255,0.08);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
         }
 
         body {
-            background-color: var(--primary-bg);
+
+            background:
+                radial-gradient(circle at top right,
+                rgba(56,189,248,0.08),
+                transparent 25%),
+
+                radial-gradient(circle at bottom left,
+                rgba(139,92,246,0.08),
+                transparent 25%),
+
+                var(--primary-bg);
+
             color: var(--text-main);
+
             display: flex;
             height: 100vh;
             overflow: hidden;
         }
 
-        /* Sidebar Navigation */
+        /* ========================= */
+        /* SIDEBAR */
+        /* ========================= */
+
         nav {
+
             width: 260px;
-            background: rgba(0, 0, 0, 0.2);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+            background: rgba(0,0,0,0.25);
+
+            border-right: 1px solid var(--border);
+
             padding: 2rem 1rem;
+
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+
+            gap: 1rem;
+
+            backdrop-filter: blur(10px);
         }
 
         .logo {
-            font-size: 1.2rem;
+
+            font-size: 1.3rem;
             font-weight: bold;
+
             color: var(--accent-blue);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
+
             letter-spacing: 2px;
+
+            margin-bottom: 2rem;
+
+            text-transform: uppercase;
         }
 
         .nav-item {
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
+
+            padding: 0.9rem 1rem;
+
+            border-radius: 12px;
+
             color: var(--text-dim);
+
             text-decoration: none;
-            transition: 0.3s;
+
+            transition: 0.3s ease;
         }
 
-        .nav-item:hover, .nav-item.active {
+        .nav-item:hover,
+        .nav-item.active {
+
             background: var(--glass-bg);
-            color: var(--text-main);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+            color: white;
+
+            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
         }
 
-        /* Main Content Area */
+        /* ========================= */
+        /* MAIN */
+        /* ========================= */
+
         main {
+
             flex-grow: 1;
+
             padding: 2rem;
+
             overflow-y: auto;
         }
 
         header {
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            gap: 1rem;
+
             margin-bottom: 2.5rem;
+
+            flex-wrap: wrap;
         }
 
         .search-bar {
-            background: var(--glass-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            color: white;
+
             width: 300px;
+
+            padding: 0.8rem 1.2rem;
+
+            border-radius: 30px;
+
+            border: 1px solid var(--border);
+
+            background: var(--glass-bg);
+
+            color: white;
+
+            outline: none;
         }
 
-        /* Stats Grid */
+        .search-bar::placeholder {
+            color: var(--text-dim);
+        }
+
+        /* ========================= */
+        /* STATS */
+        /* ========================= */
+
         .stats-grid {
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px,1fr));
+
             gap: 1.5rem;
+
             margin-bottom: 2.5rem;
         }
 
         .stat-card {
+
             background: var(--glass-bg);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
             padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
             backdrop-filter: blur(10px);
+
+            transition: 0.3s ease;
+        }
+
+        .stat-card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: rgba(56,189,248,0.3);
         }
 
         .stat-card h3 {
-            font-size: 0.85rem;
+
+            font-size: 0.9rem;
+
             color: var(--text-dim);
-            margin-bottom: 0.5rem;
+
+            margin-bottom: 0.6rem;
         }
 
         .stat-card p {
-            font-size: 1.5rem;
+
+            font-size: 1.7rem;
+
             font-weight: bold;
         }
 
-        /* Data Table Section */
+        /* ========================= */
+        /* CONTENT CARD */
+        /* ========================= */
+
         .content-card {
+
             background: var(--glass-bg);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
             padding: 1.5rem;
+
+            backdrop-filter: blur(10px);
+
+            margin-bottom: 3rem;
         }
 
         table {
+
             width: 100%;
+
             border-collapse: collapse;
+
             margin-top: 1rem;
         }
 
         th {
+
             text-align: left;
-            color: var(--text-dim);
-            font-weight: 500;
+
             padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            color: var(--text-dim);
+
+            border-bottom: 1px solid var(--border);
         }
 
         td {
+
             padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.05);
         }
 
         .status-tag {
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            background: rgba(56, 189, 248, 0.2);
+
+            background:
+                rgba(56,189,248,0.15);
+
             color: var(--accent-blue);
+
+            padding: 0.3rem 0.7rem;
+
+            border-radius: 20px;
+
+            font-size: 0.75rem;
+        }
+
+        /* ========================= */
+        /* PRICING */
+        /* ========================= */
+
+        .pricing-section {
+
+            margin-top: 2rem;
+        }
+
+        .pricing-header {
+
+            margin-bottom: 2rem;
+        }
+
+        .pricing-header h2 {
+
+            font-size: 2rem;
+
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-header p {
+
+            color: var(--text-dim);
+        }
+
+        .pricing-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit,minmax(320px,1fr));
+
+            gap: 2rem;
+        }
+
+        .pricing-card {
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.06),
+                    rgba(255,255,255,0.03)
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 26px;
+
+            padding: 2rem;
+
+            overflow: hidden;
+
+            transition: 0.35s ease;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .pricing-card:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.35);
+
+            border-color:
+                rgba(56,189,248,0.4);
+        }
+
+        .premium {
+            border-color:
+                rgba(139,92,246,0.3);
+        }
+
+        .pricing-badge {
+
+            position: absolute;
+
+            top: 18px;
+            right: 18px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    var(--accent-blue),
+                    var(--accent-purple)
+                );
+
+            padding: 0.35rem 0.8rem;
+
+            border-radius: 30px;
+
+            font-size: 0.7rem;
+
+            font-weight: bold;
+        }
+
+        .plan-name {
+
+            font-size: 1.6rem;
+
+            font-weight: bold;
+
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+
+            font-size: 3rem;
+
+            font-weight: bold;
+
+            margin-bottom: 0.3rem;
+        }
+
+        .one-time {
+
+            color: var(--text-dim);
+
+            margin-bottom: 2rem;
+        }
+
+        .feature-list {
+
+            list-style: none;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 1rem;
+
+            margin-bottom: 2rem;
+        }
+
+        .feature-list li {
+
+            display: flex;
+            align-items: center;
+
+            gap: 0.7rem;
+
+            color: #dbeafe;
+        }
+
+        .feature-list li::before {
+
+            content: "✔";
+
+            color: var(--success);
+
+            font-weight: bold;
+        }
+
+        .pricing-btn {
+
+            width: 100%;
+
+            padding: 1rem;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    var(--accent-blue),
+                    var(--accent-purple)
+                );
+
+            color: white;
+
+            font-size: 1rem;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .pricing-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(56,189,248,0.25);
+        }
+
+        /* ========================= */
+        /* MODALS */
+        /* ========================= */
+
+        .modal-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,0.75);
+
+            backdrop-filter: blur(10px);
+
+            display: none;
+
+            justify-content: center;
+            align-items: center;
+
+            z-index: 9999;
+
+            padding: 1rem;
+        }
+
+        .payment-modal {
+
+            width: 100%;
+            max-width: 460px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,23,42,0.98),
+                    rgba(30,41,59,0.96)
+                );
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 26px;
+
+            padding: 2rem;
+
+            animation: modalPop 0.3s ease;
+        }
+
+        @keyframes modalPop {
+
+            from {
+                opacity: 0;
+                transform:
+                    scale(0.9)
+                    translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+        .modal-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 2rem;
+        }
+
+        .close-btn {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 12px;
+
+            border: none;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .payment-summary {
+
+            background:
+                rgba(255,255,255,0.03);
+
+            border-radius: 18px;
+
+            padding: 1.5rem;
+
+            margin-bottom: 2rem;
+        }
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 0.9rem 0;
+
+            color: #cbd5e1;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row.total {
+
+            margin-top: 0.6rem;
+
+            font-size: 1.15rem;
+
+            font-weight: bold;
+
+            color: white;
+        }
+
+        .pay-btn {
+
+            width: 100%;
+
+            padding: 1rem;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    var(--accent-blue),
+                    var(--accent-purple)
+                );
+
+            color: white;
+
+            font-size: 1rem;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        /* ========================= */
+        /* LOADER */
+        /* ========================= */
+
+        .processing-box,
+        .success-box {
+            text-align: center;
+        }
+
+        .loader {
+
+            width: 70px;
+            height: 70px;
+
+            border:
+                6px solid rgba(255,255,255,0.1);
+
+            border-top:
+                6px solid var(--accent-blue);
+
+            border-radius: 50%;
+
+            margin:
+                auto auto 1.5rem;
+
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .success-icon {
+
+            width: 90px;
+            height: 90px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(74,222,128,0.15);
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            margin:
+                auto auto 1.5rem;
+
+            color: var(--success);
+
+            font-size: 2.5rem;
+
+            font-weight: bold;
+        }
+
+        .transaction-box {
+
+            margin: 2rem 0;
+
+            background:
+                rgba(255,255,255,0.03);
+
+            border-radius: 18px;
+
+            padding: 1rem;
+        }
+
+        /* ========================= */
+        /* RESPONSIVE */
+        /* ========================= */
+
+        @media(max-width:768px){
+
+            body {
+                flex-direction: column;
+                height: auto;
+            }
+
+            nav {
+
+                width: 100%;
+
+                flex-direction: row;
+
+                overflow-x: auto;
+            }
+
+            main {
+                padding: 1.2rem;
+            }
+
+            .plan-price {
+                font-size: 2.5rem;
+            }
         }
 
     </style>
+
 </head>
+
 <body>
 
+    <!-- ========================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================= -->
+
     <nav>
-        <div class="logo">Dextimani</div>
-        <a href="#" class="nav-item active">Dashboard</a>
-        <a href="#" class="nav-item">Projects</a>
-        <a href="#" class="nav-item">Cloud Functions</a>
-        <a href="#" class="nav-item">Database</a>
-        <a href="#" class="nav-item">Settings</a>
+
+        <div class="logo">
+            Dextimani
+        </div>
+
+        <a href="#" class="nav-item active">
+            Dashboard
+        </a>
+
+        <a href="#" class="nav-item">
+            Projects
+        </a>
+
+        <a href="#" class="nav-item">
+            Cloud Functions
+        </a>
+
+        <a href="#" class="nav-item">
+            Database
+        </a>
+
+        <a href="#pricing" class="nav-item">
+            Pricing
+        </a>
+
+        <a href="#" class="nav-item">
+            Settings
+        </a>
+
     </nav>
 
+    <!-- ========================= -->
+    <!-- MAIN -->
+    <!-- ========================= -->
+
     <main>
+
         <header>
-            <h1>Project Overview</h1>
-            <h2>Blockchain Sage App - ID: 185s5gd77fgjs764j</h2>
-            <input type="text" class="search-bar" placeholder="Search resources...">
+
+            <div>
+
+                <h1>Project Overview</h1>
+
+                <h2 style="color:var(--text-dim);margin-top:0.5rem;">
+                    Blockchain Sage App - ID:
+                    185s5gd77fgjs764j
+                </h2>
+
+            </div>
+
+            <input
+                type="text"
+                class="search-bar"
+                placeholder="Search resources..."
+            >
+
         </header>
 
+        <!-- ========================= -->
+        <!-- STATS -->
+        <!-- ========================= -->
+
         <div class="stats-grid">
+
             <div class="stat-card">
                 <h3>Active Users</h3>
                 <p>1,284</p>
             </div>
+
             <div class="stat-card">
                 <h3>API Requests</h3>
                 <p>42.5k</p>
             </div>
+
             <div class="stat-card">
                 <h3>System Health</h3>
-                <p style="color: #4ade80;">99.9%</p>
+                <p style="color:#4ade80;">
+                    99.9%
+                </p>
             </div>
+
             <div class="stat-card">
                 <h3>Storage Used</h3>
                 <p>12.4 GB</p>
             </div>
+
         </div>
 
+        <!-- ========================= -->
+        <!-- RECENT ACTIVITY -->
+        <!-- ========================= -->
+
         <div class="content-card">
+
             <h2>Recent Activity</h2>
+
             <table>
+
                 <thead>
+
                     <tr>
                         <th>Resource Name</th>
                         <th>Type</th>
                         <th>Status</th>
                         <th>Last Modified</th>
                     </tr>
+
                 </thead>
+
                 <tbody>
+
                     <tr>
                         <td>blockchain-sage-auth</td>
                         <td>Cloud Function</td>
-                        <td><span class="status-tag">Active</span></td>
+                        <td>
+                            <span class="status-tag">
+                                Active
+                            </span>
+                        </td>
                         <td>2 mins ago</td>
                     </tr>
+
                     <tr>
                         <td>southern-smokehouse-db</td>
                         <td>Firestore</td>
-                        <td><span class="status-tag">Active</span></td>
+                        <td>
+                            <span class="status-tag">
+                                Active
+                            </span>
+                        </td>
                         <td>1 hour ago</td>
                     </tr>
+
                     <tr>
                         <td>dictionary-json-v2</td>
                         <td>Storage</td>
-                        <td><span class="status-tag">Pending</span></td>
+                        <td>
+                            <span class="status-tag">
+                                Pending
+                            </span>
+                        </td>
                         <td>5 hours ago</td>
                     </tr>
+
                 </tbody>
+
             </table>
+
         </div>
+
+        <!-- ========================= -->
+        <!-- PRICING -->
+        <!-- ========================= -->
+
+        <section
+            class="pricing-section"
+            id="pricing"
+        >
+
+            <div class="pricing-header">
+
+                <h2>
+                    Professional Packages
+                </h2>
+
+                <p>
+                    One-time payment plans designed
+                    for personalization, premium
+                    optimization and enterprise
+                    support.
+                </p>
+
+            </div>
+
+            <div class="pricing-grid">
+
+                <!-- STARTER -->
+
+                <div class="pricing-card">
+
+                    <div class="plan-name">
+                        Starter Plan
+                    </div>
+
+                    <div class="plan-price">
+                        $18.25
+                    </div>
+
+                    <div class="one-time">
+                        One-time payment
+                    </div>
+
+                    <ul class="feature-list">
+
+                        <li>
+                            Personalization services
+                        </li>
+
+                        <li>
+                            Premium protection for
+                            ad personalization
+                        </li>
+
+                        <li>
+                            Optimization services
+                        </li>
+
+                        <li>
+                            Premium dashboard setup
+                        </li>
+
+                        <li>
+                            Priority onboarding
+                        </li>
+
+                    </ul>
+
+                    <button
+                        class="pricing-btn"
+                        onclick="openPaymentModal(
+                            'Starter Plan',
+                            18.25
+                        )"
+                    >
+
+                        Choose Starter
+
+                    </button>
+
+                </div>
+
+                <!-- PREMIUM -->
+
+                <div class="pricing-card premium">
+
+                    <div class="pricing-badge">
+                        MOST POPULAR
+                    </div>
+
+                    <div class="plan-name">
+                        Premium Plan
+                    </div>
+
+                    <div class="plan-price">
+                        $49.50
+                    </div>
+
+                    <div class="one-time">
+                        One-time payment
+                    </div>
+
+                    <ul class="feature-list">
+
+                        <li>
+                            Everything in Starter
+                        </li>
+
+                        <li>
+                            Multiple application
+                            support
+                        </li>
+
+                        <li>
+                            Enterprise optimization
+                        </li>
+
+                        <li>
+                            Infrastructure tools
+                        </li>
+
+                        <li>
+                            Dedicated 24/7 support
+                        </li>
+
+                    </ul>
+
+                    <button
+                        class="pricing-btn"
+                        onclick="openPaymentModal(
+                            'Premium Plan',
+                            49.50
+                        )"
+                    >
+
+                        Upgrade to Premium
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
+
+    <!-- ========================= -->
+    <!-- PAYMENT MODAL -->
+    <!-- ========================= -->
+
+    <div
+        class="modal-overlay"
+        id="paymentModal"
+    >
+
+        <div class="payment-modal">
+
+            <div class="modal-top">
+
+                <h2 id="modalPlanName">
+                    Starter Plan
+                </h2>
+
+                <button
+                    class="close-btn"
+                    onclick="closeModal()"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+            <div class="payment-summary">
+
+                <div class="summary-row">
+                    <span>Package Fee</span>
+                    <span id="packageFee">
+                        $18.25
+                    </span>
+                </div>
+
+                <div class="summary-row">
+                    <span>VAT (7.5%)</span>
+                    <span id="vatAmount">
+                        $1.37
+                    </span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="totalAmount">
+                        $19.62
+                    </span>
+                </div>
+
+            </div>
+
+            <button
+                class="pay-btn"
+                onclick="processPayment()"
+            >
+
+                Pay Now
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- PROCESSING -->
+    <!-- ========================= -->
+
+    <div
+        class="modal-overlay"
+        id="processingModal"
+    >
+
+        <div
+            class="payment-modal processing-box"
+        >
+
+            <div class="loader"></div>
+
+            <h2>
+                Processing Payment
+            </h2>
+
+            <p
+                style="
+                    margin-top:1rem;
+                    color:#94a3b8;
+                "
+            >
+                Please wait while your
+                transaction is processed...
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- SUCCESS -->
+    <!-- ========================= -->
+
+    <div
+        class="modal-overlay"
+        id="successModal"
+    >
+
+        <div
+            class="payment-modal success-box"
+        >
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Payment Successful
+            </h2>
+
+            <p
+                id="successText"
+                style="
+                    margin-top:1rem;
+                    color:#94a3b8;
+                "
+            >
+                Your plan has been activated.
+            </p>
+
+            <div class="transaction-box">
+
+                <div class="summary-row">
+
+                    <span>
+                        Transaction ID
+                    </span>
+
+                    <span id="transactionId">
+                        TXN-829302
+                    </span>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>Status</span>
+
+                    <span
+                        style="color:#4ade80;"
+                    >
+                        Completed
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button
+                class="pay-btn"
+                onclick="closeSuccess()"
+            >
+
+                Continue
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- SCRIPT -->
+    <!-- ========================= -->
+
+    <script>
+
+        let selectedPlan = "";
+        let selectedPrice = 0;
+
+        function openPaymentModal(
+            plan,
+            price
+        ){
+
+            selectedPlan = plan;
+            selectedPrice = price;
+
+            const vat =
+                (price * 0.075).toFixed(2);
+
+            const total =
+                (
+                    price +
+                    parseFloat(vat)
+                ).toFixed(2);
+
+            document
+                .getElementById(
+                    "modalPlanName"
+                )
+                .innerText = plan;
+
+            document
+                .getElementById(
+                    "packageFee"
+                )
+                .innerText =
+                    "$" +
+                    price.toFixed(2);
+
+            document
+                .getElementById(
+                    "vatAmount"
+                )
+                .innerText =
+                    "$" + vat;
+
+            document
+                .getElementById(
+                    "totalAmount"
+                )
+                .innerText =
+                    "$" + total;
+
+            document
+                .getElementById(
+                    "paymentModal"
+                )
+                .style.display =
+                    "flex";
+        }
+
+        function closeModal(){
+
+            document
+                .getElementById(
+                    "paymentModal"
+                )
+                .style.display =
+                    "none";
+        }
+
+        function processPayment(){
+
+            document
+                .getElementById(
+                    "paymentModal"
+                )
+                .style.display =
+                    "none";
+
+            document
+                .getElementById(
+                    "processingModal"
+                )
+                .style.display =
+                    "flex";
+
+            setTimeout(() => {
+
+                document
+                    .getElementById(
+                        "processingModal"
+                    )
+                    .style.display =
+                        "none";
+
+                const txn =
+                    "TXN-" +
+                    Math.floor(
+                        Math.random() *
+                        99999999
+                    );
+
+                document
+                    .getElementById(
+                        "transactionId"
+                    )
+                    .innerText = txn;
+
+                document
+                    .getElementById(
+                        "successText"
+                    )
+                    .innerText =
+                        selectedPlan +
+                        " has been successfully activated.";
+
+                document
+                    .getElementById(
+                        "successModal"
+                    )
+                    .style.display =
+                        "flex";
+
+            }, 3000);
+        }
+
+        function closeSuccess(){
+
+            document
+                .getElementById(
+                    "successModal"
+                )
+                .style.display =
+                    "none";
+        }
+
+    </script>
 
 </body>
 </html>
