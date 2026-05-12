@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Console | Dextimani Digital</title>
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --accent-blue: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: var(--glass-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content Area */
+        main {
+            flex-grow: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .search-bar {
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            color: white;
+            width: 300px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card h3 {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Data Table Section */
+        .content-card {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th {
+            text-align: left;
+            color: var(--text-dim);
+            font-weight: 500;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-tag {
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--accent-blue);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Dextimani</div>
+        <a href="#" class="nav-item active">Dashboard</a>
+        <a href="#" class="nav-item">Projects</a>
+        <a href="#" class="nav-item">Cloud Functions</a>
+        <a href="#" class="nav-item">Database</a>
+        <a href="#" class="nav-item">Settings</a>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Project Overview</h1>
+            <input type="text" class="search-bar" placeholder="Search resources...">
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Active Users</h3>
+                <p>1,284</p>
+            </div>
+            <div class="stat-card">
+                <h3>API Requests</h3>
+                <p>42.5k</p>
+            </div>
+            <div class="stat-card">
+                <h3>System Health</h3>
+                <p style="color: #4ade80;">99.9%</p>
+            </div>
+            <div class="stat-card">
+                <h3>Storage Used</h3>
+                <p>12.4 GB</p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Recent Activity</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Resource Name</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Last Modified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>blockchain-sage-auth</td>
+                        <td>Cloud Function</td>
+                        <td><span class="status-tag">Active</span></td>
+                        <td>2 mins ago</td>
+                    </tr>
+                    <tr>
+                        <td>southern-smokehouse-db</td>
+                        <td>Firestore</td>
+                        <td><span class="status-tag">Active</span></td>
+                        <td>1 hour ago</td>
+                    </tr>
+                    <tr>
+                        <td>dictionary-json-v2</td>
+                        <td>Storage</td>
+                        <td><span class="status-tag">Pending</span></td>
+                        <td>5 hours ago</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>
