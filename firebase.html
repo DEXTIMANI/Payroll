@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firebase Billing Mockup</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0d0d0d;
+    color:white;
+    display:flex;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:320px;
+    background:#151515;
+    border-right:1px solid #2b2b2b;
+    padding:20px 24px;
+    position:relative;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:40px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo span{
+    color:#ffca28;
+    font-size:32px;
+}
+
+.menu-item{
+    padding:14px 0;
+    color:#d0d0d0;
+    font-size:17px;
+}
+
+/* MAIN CONTENT */
+
+.main{
+    flex:1;
+    padding:40px;
+    overflow:auto;
+}
+
+.project{
+    font-size:20px;
+    color:#dcdcdc;
+    margin-bottom:20px;
+}
+
+.title{
+    font-size:64px;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+.tabs{
+    display:flex;
+    gap:50px;
+    border-bottom:1px solid #333;
+    margin-bottom:40px;
+}
+
+.tab{
+    padding-bottom:18px;
+    color:#aaa;
+    font-size:20px;
+}
+
+.tab.active{
+    color:#66a3ff;
+    border-bottom:3px solid #66a3ff;
+}
+
+.top-right{
+    text-align:right;
+    color:#ccc;
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+/* CARDS */
+
+.card{
+    background:#1d1d1d;
+    border-radius:18px;
+    padding:34px;
+    margin-bottom:28px;
+    border:1px solid #252525;
+}
+
+.cost-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.left h2{
+    font-size:54px;
+    margin-bottom:15px;
+}
+
+.badge{
+    display:inline-block;
+    border:1px solid #666;
+    padding:8px 18px;
+    border-radius:30px;
+    color:#ccc;
+    font-size:24px;
+}
+
+.right{
+    text-align:right;
+}
+
+.right .label{
+    font-size:30px;
+    color:#ccc;
+    margin-bottom:10px;
+}
+
+.right .amount{
+    font-size:72px;
+    font-weight:bold;
+}
+
+.usage-title{
+    font-size:52px;
+    margin-bottom:24px;
+}
+
+.usage-text{
+    font-size:28px;
+    line-height:1.6;
+    color:#d0d0d0;
+}
+
+.info{
+    margin-top:30px;
+    background:#3a3a3a;
+    padding:24px;
+    border-radius:8px;
+    font-size:28px;
+    color:#ddd;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        <span>🔥</span> Firebase
+    </div>
+
+    <div class="menu-item">🔍 Search for products</div>
+    <div class="menu-item">🏠 Project Overview</div>
+    <div class="menu-item">⚙️ Settings</div>
+
+    <div style="margin-top:40px;color:#888;font-size:20px;">
+        What's new
+    </div>
+
+    <div class="menu-item">🧩 SQL Connect</div>
+
+    <div style="margin-top:50px;color:#888;font-size:20px;">
+        Project shortcuts
+    </div>
+
+    <div class="menu-item">👥 Authentication</div>
+    <div class="menu-item">🗂 Firestore</div>
+    <div class="menu-item">🖼 Storage</div>
+    <div class="menu-item">📞 Phone Verification</div>
+    <div class="menu-item">🛡 App Check</div>
+
+    <div style="position:absolute;bottom:40px;left:24px;color:#aaa;font-size:22px;">
+        Blaze<br>
+        <span style="font-size:18px;color:#777;">
+            Pay as you go
+        </span>
+    </div>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="project">
+        Blockchain Sage ▼
+    </div>
+
+    <div class="title">
+        Usage and billing
+    </div>
+
+    <div class="tabs">
+        <div class="tab active">Overview</div>
+        <div class="tab">Details & settings</div>
+        <div class="tab">Subscriptions</div>
+    </div>
+
+    <div class="top-right">
+        📅 May 2026
+    </div>
+
+    <!-- PROJECT COST -->
+    <div class="card cost-card">
+
+        <div class="left">
+            <h2>Project cost</h2>
+            <div class="badge">Blaze</div>
+        </div>
+
+        <div class="right">
+            <div class="label">Project cost</div>
+            <div class="amount">$14.96</div>
+        </div>
+
+    </div>
+
+    <!-- PRODUCT USAGE -->
+    <div class="card">
+
+        <div class="usage-title">
+            Product Usage
+        </div>
+
+        <div class="usage-text">
+            Firebase offers a no-cost tier for paid infrastructure products.
+            You'll be charged only for any usage that goes above these
+            no-cost tier thresholds.
+        </div>
+
+        <div class="info">
+            ℹ Usage data is only provided for the current month and is not
+            available when viewing historical periods.
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
