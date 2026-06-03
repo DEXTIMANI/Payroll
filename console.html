@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Google Cloud Payment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Roboto',sans-serif;
+}
+
+body{
+    background:#fff;
+    color:#202124;
+}
+
+.topbar{
+    background:#111;
+    color:white;
+    padding:10px 15px;
+    font-size:14px;
+}
+
+.browser{
+    background:#111;
+    padding:8px 10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+}
+
+.browser .address{
+    flex:1;
+    background:#2a2a2a;
+    border-radius:30px;
+    padding:10px 16px;
+    font-size:15px;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.page{
+    padding:35px 28px;
+}
+
+h1{
+    font-size:28px;
+    font-weight:400;
+    margin-bottom:45px;
+}
+
+.account{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:30px;
+    border-bottom:1px solid #e0e0e0;
+}
+
+.account-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.cloud{
+    width:42px;
+    height:42px;
+}
+
+.account-name{
+    font-size:21px;
+    font-weight:400;
+}
+
+.balance{
+    text-align:right;
+}
+
+.balance .amount{
+    font-size:25px;
+    font-weight:400;
+}
+
+.balance .label{
+    color:#5f6368;
+    margin-top:6px;
+    font-size:15px;
+}
+
+.warning{
+    display:flex;
+    gap:20px;
+    padding:35px 0;
+    border-bottom:1px solid #e0e0e0;
+}
+
+.warning-icon{
+    color:#fbbc04;
+    font-size:32px;
+}
+
+.warning-text{
+    line-height:1.45;
+    font-size:17px;
+}
+
+.warning-text b{
+    font-weight:700;
+}
+
+.warning-text a{
+    color:#1a73e8;
+    text-decoration:none;
+}
+
+.payment-method-title{
+    margin-top:28px;
+    margin-bottom:14px;
+    color:#5f6368;
+    font-size:16px;
+}
+
+.card{
+    border:1px solid #dadce0;
+    border-radius:14px;
+    padding:22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.card-left{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.card-img{
+    width:85px;
+    height:55px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#000,#1a237e,#6a1b9a);
+    position:relative;
+}
+
+.card-img::before,
+.card-img::after{
+    content:"VISA";
+    position:absolute;
+    color:white;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.card-img::before{
+    left:6px;
+    top:5px;
+}
+
+.card-img::after{
+    right:6px;
+    top:5px;
+}
+
+.card-number{
+    font-size:22px;
+}
+
+.change{
+    color:#1a73e8;
+    font-size:20px;
+    font-weight:500;
+}
+
+.section-title{
+    margin-top:42px;
+    margin-bottom:18px;
+    font-size:20px;
+    color:#3c4043;
+}
+
+.amount-box{
+    border:4px solid #ea4335;
+    border-radius:8px;
+    padding:14px 18px;
+    position:relative;
+}
+
+.amount-label{
+    position:absolute;
+    top:-16px;
+    left:14px;
+    background:white;
+    padding:0 8px;
+    color:#ea4335;
+    font-size:18px;
+}
+
+.input{
+    font-size:28px;
+    color:#202124;
+}
+
+.error{
+    color:#ea4335;
+    font-size:18px;
+    margin-top:14px;
+    margin-left:10px;
+}
+
+.buttons{
+    margin-top:55px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:40px;
+}
+
+.cancel{
+    color:#1a73e8;
+    font-size:22px;
+}
+
+.continue{
+    background:#1a73e8;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:18px 40px;
+    font-size:22px;
+    cursor:pointer;
+}
+
+@media(max-width:700px){
+
+    .account{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .balance{
+        text-align:left;
+    }
+
+    .buttons{
+        gap:20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    9:20 AM &nbsp;&nbsp; WhatsApp &nbsp;&nbsp; Gmail &nbsp;&nbsp; YouTube
+</div>
+
+<div class="browser">
+    <div>🏠</div>
+    <div>←</div>
+    <div>⟳</div>
+
+    <div class="address">
+        ole.cloud.google.com
+    </div>
+
+    <div>☆</div>
+    <div>⇪</div>
+    <div>⋮</div>
+</div>
+
+<div class="page">
+
+    <h1>Make a payment</h1>
+
+    <div class="account">
+
+        <div class="account-left">
+
+            <img class="cloud"
+            src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg">
+
+            <div class="account-name">
+                Google Cloud 010C01-2E2DDF-2AB436
+            </div>
+
+        </div>
+
+        <div class="balance">
+            <div class="amount">$2.3</div>
+            <div class="label">current balance</div>
+        </div>
+
+    </div>
+
+    <div class="warning">
+
+        <div class="warning-icon">⚠</div>
+
+        <div class="warning-text">
+            You've reached your payment threshold and your payment of
+            <b>$14.9</b> is <b>past due.</b>
+            Make a payment to keep your service running.
+            <a href="#">Learn more about automatic payments</a>
+        </div>
+
+    </div>
+
+    <div class="payment-method-title">
+        Payment method
+    </div>
+
+    <div class="card">
+
+        <div class="card-left">
+
+            <div class="card-img"></div>
+
+            <div class="card-number">
+                Visa •••• 4699
+            </div>
+
+        </div>
+
+        <div class="change">Change</div>
+
+    </div>
+
+    <div class="section-title">
+        Payment amount
+    </div>
+
+    <div class="amount-box">
+
+        <div class="amount-label">
+            Amount
+        </div>
+
+        <div class="input">
+            $20
+        </div>
+
+    </div>
+
+    <div class="error">
+        Amount must be at least $25.00
+    </div>
+
+    <div class="buttons">
+
+        <div class="cancel">
+            Cancel
+        </div>
+
+        <button class="continue">
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+</html>
