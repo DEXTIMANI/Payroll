@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Food Gallery Showcase</title>
+<style>
+body{font-family:Arial,sans-serif;background:#5a0000;color:#fff;margin:0}
+section{padding:30px;border-bottom:1px solid rgba(255,255,255,.15)}
+h2{text-align:center;color:#ffcc66}
+.gallery{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:15px 0}
+.card{background:#7a0000;border:2px solid orange;border-radius:16px;overflow:hidden;width:220px}
+.card img{width:100%;height:150px;object-fit:cover}
+.info{padding:10px}
+.price{color:#ffd700;font-weight:bold}
+.coverflow .card:nth-child(2){transform:scale(1.15)}
+.spotlight .card:not(:nth-child(2)){filter:grayscale(100%)}
+.hero{position:relative;height:280px;overflow:hidden;border-radius:18px}
+.hero img{position:absolute;width:100%;height:100%;object-fit:cover;animation:fade 12s infinite;opacity:0}
+.hero img:nth-child(2){animation-delay:4s}
+.hero img:nth-child(3){animation-delay:8s}
+@keyframes fade{0%,25%{opacity:1}33%,100%{opacity:0}}
+.carousel-track{display:flex;gap:10px;animation:scroll 20s linear infinite}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.stack .card{margin-left:-80px;transition:.5s}.stack .card:hover{transform:translateY(-10px)}
+.circle{position:relative;height:320px}
+.circle .card{position:absolute;width:140px}
+.circle .c1{top:0;left:45%}.circle .c2{top:100px;left:20%}.circle .c3{top:100px;right:20%}
+.reel{height:300px;overflow:hidden}.reel .gallery{animation:up 12s linear infinite}
+@keyframes up{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.masonry{columns:3 220px}.masonry .card{display:inline-block;margin:8px;width:100%}
+.filmstrip .thumbs{display:flex;gap:6px;overflow:auto}.thumbs img{width:80px;height:60px}
+.accordion{display:flex;height:250px}.accordion img{flex:1;object-fit:cover;transition:.5s}.accordion img:hover{flex:4}
+.wall{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cube-note{text-align:center;padding:30px;background:#700}
+</style>
+</head>
+<body>
+<h1 style="text-align:center">Client Gallery Showcase</h1>
+<p style="text-align:center">Replace images with your food photos.</p>
+
+<section><h2>1. Coverflow Gallery</h2><div class="gallery coverflow">
+<div class="card"><img src="https://picsum.photos/400/300?1"><div class="info"><b>Corn Bread</b><div class="price">$8.99</div><p>Golden baked cornbread.</p></div></div>
+<div class="card"><img src="https://picsum.photos/400/300?2"><div class="info"><b>Featured Dish</b><div class="price">$14.99</div><p>Chef special.</p></div></div>
+<div class="card"><img src="https://picsum.photos/400/300?3"><div class="info"><b>Beans</b><div class="price">$6.99</div><p>Slow cooked beans.</p></div></div>
+</div></section>
+
+<section><h2>2. Spotlight Gallery</h2><div class="gallery spotlight">
+<div class="card"><img src="https://picsum.photos/400/300?4"><div class="info"><div class="price">$7.99</div></div></div>
+<div class="card"><img src="https://picsum.photos/400/300?5"><div class="info"><div class="price">$12.99</div></div></div>
+<div class="card"><img src="https://picsum.photos/400/300?6"><div class="info"><div class="price">$8.99</div></div></div>
+</div></section>
+
+<section><h2>3. Hero Slider</h2><div class="hero">
+<img src="https://picsum.photos/1200/500?7"><img src="https://picsum.photos/1200/500?8"><img src="https://picsum.photos/1200/500?9">
+</div></section>
+
+<section><h2>4. Infinite Carousel</h2><div class="carousel-track">
+<img src="https://picsum.photos/250/180?10"><img src="https://picsum.photos/250/180?11"><img src="https://picsum.photos/250/180?12"><img src="https://picsum.photos/250/180?13">
+<img src="https://picsum.photos/250/180?10"><img src="https://picsum.photos/250/180?11"><img src="https://picsum.photos/250/180?12"><img src="https://picsum.photos/250/180?13">
+</div></section>
+
+<section><h2>5. Stack Cards</h2><div class="gallery stack">
+<div class="card"><img src="https://picsum.photos/400/300?14"><div class="info"><div class="price">$11.99</div></div></div>
+<div class="card"><img src="https://picsum.photos/400/300?15"><div class="info"><div class="price">$12.99</div></div></div>
+<div class="card"><img src="https://picsum.photos/400/300?16"><div class="info"><div class="price">$13.99</div></div></div>
+</div></section>
+
+<section><h2>6. Masonry Grid</h2><div class="masonry">
+<div class="card"><img src="https://picsum.photos/400/500?17"><div class="info">$9.99</div></div>
+<div class="card"><img src="https://picsum.photos/400/300?18"><div class="info">$10.99</div></div>
+<div class="card"><img src="https://picsum.photos/400/450?19"><div class="info">$8.99</div></div>
+</div></section>
+
+<section><h2>7. Circular Gallery</h2><div class="circle">
+<div class="card c1"><img src="https://picsum.photos/200/150?20"></div>
+<div class="card c2"><img src="https://picsum.photos/200/150?21"></div>
+<div class="card c3"><img src="https://picsum.photos/200/150?22"></div>
+</div></section>
+
+<section><h2>8. Vertical Reel</h2><div class="reel"><div class="gallery">
+<div class="card"><img src="https://picsum.photos/400/300?23"></div>
+<div class="card"><img src="https://picsum.photos/400/300?24"></div>
+<div class="card"><img src="https://picsum.photos/400/300?25"></div>
+</div></div></section>
+
+<section class="filmstrip"><h2>9. Filmstrip</h2>
+<div class="hero" style="height:220px"><img src="https://picsum.photos/1200/500?26" style="opacity:1"></div>
+<div class="thumbs"><img src="https://picsum.photos/120/80?26"><img src="https://picsum.photos/120/80?27"><img src="https://picsum.photos/120/80?28"></div>
+</section>
+
+<section><h2>10. 3D Cube (Concept)</h2><div class="cube-note">CSS 3D rotating cube placeholder for client review.</div></section>
+
+<section><h2>11. Accordion Gallery</h2><div class="accordion">
+<img src="https://picsum.photos/500/300?30"><img src="https://picsum.photos/500/300?31"><img src="https://picsum.photos/500/300?32"><img src="https://picsum.photos/500/300?33">
+</div></section>
+
+<section><h2>12. Food Wall</h2><div class="wall">
+<img src="https://picsum.photos/250/250?40"><img src="https://picsum.photos/250/250?41"><img src="https://picsum.photos/250/250?42"><img src="https://picsum.photos/250/250?43">
+</div></section>
+
+</body></html>
