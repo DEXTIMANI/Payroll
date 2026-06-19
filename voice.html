@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Voice Gallery</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#050816,#0d1b3d,#162d5c);
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:50px 20px;
+}
+
+header h1{
+    font-size:3rem;
+    margin-bottom:10px;
+    background:linear-gradient(90deg,#4da6ff,#00d4ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+header p{
+    color:#c8d6f0;
+    max-width:700px;
+    margin:auto;
+}
+
+.controls{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.controls input,
+.controls select{
+    padding:12px 15px;
+    border:none;
+    border-radius:10px;
+    background:#1d2f5c;
+    color:white;
+    min-width:220px;
+}
+
+.gallery{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    padding:30px 0 60px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.4s;
+    animation:fadeIn .7s ease;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+
+.icon{
+    font-size:4rem;
+    text-align:center;
+    padding:25px 0;
+}
+
+.content{
+    padding:20px;
+    text-align:center;
+}
+
+.content h2{
+    color:#59b4ff;
+    margin-bottom:10px;
+}
+
+.content p{
+    color:#d8e4ff;
+    min-height:80px;
+    line-height:1.6;
+}
+
+.price{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 25px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#007bff,#00d4ff);
+    font-weight:bold;
+    font-size:1.3rem;
+}
+
+button{
+    width:85%;
+    margin:20px auto;
+    display:block;
+    padding:12px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+    background:white;
+    transition:.3s;
+}
+
+button:hover{
+    background:#00d4ff;
+    color:white;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.modal-content{
+    width:90%;
+    max-width:500px;
+    background:#12254b;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+}
+
+.close{
+    float:right;
+    font-size:28px;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#b9c9e4;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>AI Voice Gallery</h1>
+    <p>
+        Browse professional AI voice packages for videos,
+        podcasts, audiobooks, advertisements and voice cloning.
+    </p>
+</header>
+
+<div class="controls">
+    <input type="text" id="search" placeholder="Search voice package...">
+
+    <select id="sort">
+        <option value="default">Sort by Price</option>
+        <option value="low">Lowest First</option>
+        <option value="high">Highest First</option>
+    </select>
+</div>
+
+<div class="gallery" id="gallery">
+
+    <div class="card" data-price="5">
+        <div class="icon">🎤</div>
+        <div class="content">
+            <h2>Starter Voice</h2>
+            <p>Perfect for social media clips and short narrations.</p>
+            <div class="price">$5</div>
+        </div>
+        <button onclick="showPackage('Starter Voice','$5')">
+            Select Package
+        </button>
+    </div>
+
+    <div class="card" data-price="8">
+        <div class="icon">🔊</div>
+        <div class="content">
+            <h2>Basic Narrator</h2>
+            <p>Professional narration for explainers and promos.</p>
+            <div class="price">$8</div>
+        </div>
+        <button onclick="showPackage('Basic Narrator','$8')">
+            Select Package
+        </button>
+    </div>
+
+    <div class="card" data-price="10">
+        <div class="icon">🗣️</div>
+        <div class="content">
+            <h2>Premium Male</h2>
+            <p>Human-like male voice with natural pacing.</p>
+            <div class="price">$10</div>
+        </div>
+        <button onclick="showPackage('Premium Male','$10')">
+            Select Package
+        </button>
+    </div>
+
+    <div class="card" data-price="12">
+        <div class="icon">🎙️</div>
+        <div class="content">
+            <h2>Premium Female</h2>
+            <p>Warm and engaging female AI narration.</p>
+            <div class="price">$12</div>
+        </div>
+        <button onclick="showPackage('Premium Female','$12')">
+            Select Package
+        </button>
+    </div>
+
+    <div class="card" data-price="15">
+        <div class="icon">💼</div>
+        <div class="content">
+            <h2>Business Voice</h2>
+            <p>Corporate presentations and training materials.</p>
+            <div class="price">$15</div>
+        </div>
+        <button onclick="showPackage('Business Voice','$15')">
+            Select Package
+        </button>
+    </div>
+
+    <div class="card" data-price="18">
+        <div class="icon">🎭</div>
+        <div class="content">
+            <h2>Character Voice</h2>
+            <p>Expressive voices for games and storytelling.</p>
+            <div class="price">$18</div>
+        </div>
+        <button onclick="showPackage('Character Voice','$18')">
+            Select Package
+        </button>
+    </div>
+
+    <div class="card" data-price="20">
+        <div class="icon">🧬</div>
+        <div class="content">
+            <h2>Voice Cloning</h2>
+            <p>Create your own personalized AI voice.</p>
+            <div class="price">$20</div>
+        </div>
+        <button onclick="showPackage('Voice Cloning','$20')">
+            Select Package
+        </button>
+    </div>
+
+    <div class="card" data-price="24">
+        <div class="icon">🚀</div>
+        <div class="content">
+            <h2>Studio Voice Pro</h2>
+            <p>Ultra realistic AI voice with emotional control.</p>
+            <div class="price">$24</div>
+        </div>
+        <button onclick="showPackage('Studio Voice Pro','$24')">
+            Select Package
+        </button>
+    </div>
+
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2 id="packageName"></h2>
+        <p style="margin:20px 0;">
+            Thank you for selecting this AI Voice package.
+        </p>
+
+        <h3 id="packagePrice"></h3>
+
+        <button onclick="closeModal()">
+            Continue
+        </button>
+    </div>
+</div>
+
+<footer>
+    © 2026 VeeTech inc.
+</footer>
+
+<script>
+const search = document.getElementById("search");
+const sort = document.getElementById("sort");
+const gallery = document.getElementById("gallery");
+
+search.addEventListener("keyup", function(){
+    let term = this.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card=>{
+        let title = card.querySelector("h2").textContent.toLowerCase();
+        card.style.display =
+            title.includes(term) ? "block" : "none";
+    });
+});
+
+sort.addEventListener("change", function(){
+    let cards = Array.from(
+        document.querySelectorAll(".card")
+    );
+
+    cards.sort((a,b)=>{
+        let pa = Number(a.dataset.price);
+        let pb = Number(b.dataset.price);
+
+        if(this.value === "low") return pa - pb;
+        if(this.value === "high") return pb - pa;
+        return 0;
+    });
+
+    cards.forEach(card=>gallery.appendChild(card));
+});
+
+function showPackage(name, price){
+    document.getElementById("packageName").innerText = name;
+    document.getElementById("packagePrice").innerText = price;
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display = "none";
+}
+
+window.onclick = function(event){
+    const modal = document.getElementById("modal");
+    if(event.target === modal){
+        closeModal();
+    }
+}
+</script>
+
+</body>
+</html>
