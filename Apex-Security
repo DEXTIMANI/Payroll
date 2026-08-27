@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Security</title>
+    <style>
+        /* Base Styling */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            color: #58a6ff;
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        /* Pricing Cards */
+        .pricing-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            max-width: 1000px;
+        }
+
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #58a6ff;
+        }
+
+        .card h2 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #58a6ff;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .price span { font-size: 1rem; color: #8b949e; }
+
+        .features {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 30px;
+            color: #8b949e;
+        }
+
+        .features li {
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            background-color: #238636;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover { background-color: #2ea043; }
+
+        /* Payment Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #8b949e;
+        }
+
+        .close-btn:hover { color: #ffffff; }
+
+        .modal-content input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            background-color: #0d1117;
+            color: white;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            color: #484f58;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Apex Security</h1>
+        <p>Enterprise-grade fraud protection for mobile and web applications.</p>
+    </header>
+
+    <div class="pricing-container">
+        <!-- Tier 1 -->
+        <div class="card">
+            <h2>Email Guardian</h2>
+            <div class="price">$9.99 <span>/ year</span></div>
+            <ul class="features">
+                <li>✔ Block disposable emails</li>
+                <li>✔ Spam domain filtering</li>
+                <li>✔ Basic syntax validation</li>
+            </ul>
+            <button class="btn" onclick="openPayment('Email Guardian', '$9.99')">Select Plan</button>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="card">
+            <h2>Device Integrity</h2>
+            <div class="price">$29.00 <span>/ year</span></div>
+            <ul class="features">
+                <li>✔ Hardware fingerprinting</li>
+                <li>✔ Block emulators & cloners</li>
+                <li>✔ Prevent Sybil attacks</li>
+            </ul>
+            <button class="btn" onclick="openPayment('Device Integrity', '$29.00')">Select Plan</button>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="card">
+            <h2>Full Stack Shield</h2>
+            <div class="price">$49.00 <span>/ year</span></div>
+            <ul class="features">
+                <li>✔ Everything in lower tiers</li>
+                <li>✔ ML behavioral analysis</li>
+                <li>✔ API abuse prevention</li>
+            </ul>
+            <button class="btn" onclick="openPayment('Full Stack Shield', '$49.00')">Select Plan</button>
+        </div>
+    </div>
+
+    <!-- The Payment Pop-up Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePayment()">&times;</span>
+            <h2 id="modalTitle" style="color: #58a6ff;">Complete Purchase</h2>
+            <p id="modalPrice" style="color: #8b949e; margin-bottom: 20px;"></p>
+            
+            <input type="text" placeholder="Cardholder Name" required>
+            <input type="text" placeholder="Card Number (0000 0000 0000 0000)" required>
+            <div style="display: flex; gap: 10px; width: 95%; margin: 0 auto;">
+                <input type="text" placeholder="MM/YY" required>
+                <input type="text" placeholder="CVC" required>
+            </div>
+            
+            <button class="btn" style="margin-top: 20px;">Pay Now</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Designed by DEXTIMANI DIGITAL SERVICES
+    </footer>
+
+    <!-- JavaScript for Modal Interactivity -->
+    <script>
+        const modal = document.getElementById('paymentModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+
+        // Open modal and inject the selected plan's data
+        function openPayment(planName, price) {
+            modalTitle.innerText = "Checkout: " + planName;
+            modalPrice.innerText = "Total Due: " + price;
+            modal.style.display = 'flex';
+        }
+
+        // Close modal
+        function closePayment() {
+            modal.style.display = 'none';
+        }
+
+        // Close modal if user clicks outside the box
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closePayment();
+            }
+        }
+    </script>
+</body>
+</html>
