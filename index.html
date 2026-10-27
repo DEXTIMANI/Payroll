@@ -1,384 +1,220 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RADEEV - Next-Gen School Management System</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- CORE THEME COLORS (Mapped from Compose App) --- */
-        :root {
-            --theme-dark-blue: #0A1931;
-            --theme-dark-blue-light: #102A43;
-            --theme-gold: #FFD700;
-            --theme-green: #4CAF50;
-            --theme-white: #FFFFFF;
-            --theme-bg-light: #F8F9FA;
-            --theme-text-gray: #6c757d;
-        }
-
-        /* --- GLOBAL STYLES --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--theme-bg-light);
-            color: var(--theme-dark-blue);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* --- NAVBAR --- */
-        header {
-            background-color: var(--theme-dark-blue);
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            color: var(--theme-white);
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        .logo span {
-            color: var(--theme-gold);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--theme-white);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--theme-gold);
-        }
-
-        .cta-btn {
-            background-color: var(--theme-gold);
-            color: var(--theme-dark-blue);
-            padding: 0.6rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 800;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            background-color: #e6c200;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(135deg, var(--theme-dark-blue), var(--theme-dark-blue-light));
-            color: var(--theme-white);
-            padding: 8rem 5%;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .hero h1 span {
-            color: var(--theme-gold);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #d1d5db;
-        }
-
-        .hero .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .hero-btn-primary {
-            background-color: var(--theme-green);
-            color: var(--theme-white);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .hero-btn-primary:hover {
-            background-color: #3d8b40;
-        }
-
-        .hero-btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--theme-gold);
-            color: var(--theme-gold);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .hero-btn-outline:hover {
-            background-color: var(--theme-gold);
-            color: var(--theme-dark-blue);
-        }
-
-        /* --- FEATURES SECTION --- */
-        .features {
-            padding: 5rem 5%;
-            text-align: center;
-        }
-
-        .features-header h2 {
-            font-size: 2.5rem;
-            color: var(--theme-dark-blue);
-            margin-bottom: 1rem;
-        }
-
-        .features-header p {
-            color: var(--theme-text-gray);
-            margin-bottom: 4rem;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--theme-white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            text-align: left;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .icon-blue { background: rgba(10, 25, 49, 0.1); color: var(--theme-dark-blue); }
-        .icon-gold { background: rgba(255, 215, 0, 0.15); color: #d4af37; }
-        .icon-green { background: rgba(76, 175, 80, 0.1); color: var(--theme-green); }
-        .icon-purple { background: rgba(103, 58, 183, 0.1); color: #673AB7; }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--theme-dark-blue);
-        }
-
-        .feature-card p {
-            color: var(--theme-text-gray);
-            font-size: 0.95rem;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--theme-dark-blue);
-            color: var(--theme-white);
-            text-align: center;
-            padding: 3rem 5%;
-            margin-top: 4rem;
-        }
-
-        .footer-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--theme-gold);
-        }
-        
-        .footer-content p {
-            color: #9ca3af;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-bottom {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #9ca3af;
-        }
-        
-        .dev-credit {
-            color: var(--theme-gold);
-            font-weight: 600;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none; /* Add a hamburger menu for production */
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero .hero-buttons {
-                flex-direction: column;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b14">
+<meta name="description" content="RADEEV TECH builds powerful Windows software, web applications, Android apps and iOS apps.">
+<title>RADEEV TECH — Powerful Software. Limitless Possibility.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--bg:#070b14;--panel:#0d1422;--panel2:#101b2c;--line:rgba(159,190,231,.15);--text:#f3f7ff;--muted:#9baac0;--cyan:#56e6ff;--blue:#5d7cff;--violet:#a77bff;--lime:#b8ff7a;--radius:22px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 15% 0%,rgba(40,104,180,.18),transparent 38%),radial-gradient(ellipse at 90% 35%,rgba(122,70,220,.13),transparent 32%),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:auto,auto,44px 44px,44px 44px}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button,a{ -webkit-tap-highlight-color:transparent}
+.container{width:min(1160px,90%);margin:auto}
+header{height:82px;position:sticky;top:0;z-index:50;background:rgba(7,11,20,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:.5px}
+.brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#07101d;box-shadow:0 0 28px rgba(86,230,255,.2)}
+.brand span{color:var(--cyan)}
+.nav-links{display:flex;gap:30px;align-items:center;color:#c3cde0;font-size:.92rem}
+.nav-links a:hover{color:var(--cyan)}
+.btn{border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 19px;border-radius:12px;font-weight:700;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:linear-gradient(110deg,var(--cyan),#8af2d4);color:#06101b;box-shadow:0 8px 28px rgba(86,230,255,.16)}
+.btn-primary:hover{box-shadow:0 12px 36px rgba(86,230,255,.28)}
+.btn-outline{border-color:rgba(151,184,226,.3);background:rgba(255,255,255,.025);color:var(--text)}
+.btn-outline:hover{border-color:var(--cyan);background:rgba(86,230,255,.06)}
+.menu-toggle{display:none;background:none;color:white;border:0;font-size:1.35rem}
+.hero{padding:100px 0 90px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font-size:.78rem;text-transform:uppercase;letter-spacing:2px;font-weight:700;border:1px solid rgba(86,230,255,.22);background:rgba(86,230,255,.055);border-radius:999px;padding:8px 13px;margin-bottom:25px}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.13;letter-spacing:-.035em}
+h1{font-size:clamp(2.8rem,5.2vw,5rem);max-width:740px;margin-bottom:23px}
+.gradient-text{background:linear-gradient(100deg,var(--cyan),#9ba9ff 55%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy{font-size:1.1rem;color:var(--muted);max-width:600px;margin-bottom:30px}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap}
+.trust-row{display:flex;gap:22px;flex-wrap:wrap;margin-top:36px;color:#aab8cc;font-size:.84rem}
+.trust-row span{display:flex;align-items:center;gap:8px}.trust-row i{color:var(--lime)}
+.hero-visual{min-height:430px;position:relative;display:grid;place-items:center}
+.orbit{position:absolute;width:340px;height:340px;border:1px solid rgba(86,230,255,.2);border-radius:50%;animation:spin 30s linear infinite}
+.orbit:before,.orbit:after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 24px var(--cyan)}
+.orbit:before{top:40px;left:37px}.orbit:after{bottom:55px;right:12px;background:var(--violet);box-shadow:0 0 24px var(--violet)}
+.orbit-two{width:255px;height:255px;border-color:rgba(167,123,255,.26);animation-direction:reverse;animation-duration:22s}
+.core-card{width:min(340px,90%);padding:26px;border:1px solid rgba(151,184,226,.23);border-radius:25px;background:linear-gradient(145deg,rgba(18,31,52,.94),rgba(9,15,28,.94));box-shadow:0 28px 90px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.08);position:relative;z-index:2;transform:rotate(-3deg);animation:float 6s ease-in-out infinite}
+.core-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px;color:var(--muted);font-size:.78rem}
+.status{color:var(--lime);font-size:.75rem}.status:before{content:"";display:inline-block;width:6px;height:6px;background:var(--lime);border-radius:50%;margin-right:6px}
+.core-symbol{width:76px;height:76px;border-radius:23px;display:grid;place-items:center;font-size:2rem;background:linear-gradient(135deg,rgba(86,230,255,.2),rgba(93,124,255,.2));border:1px solid rgba(86,230,255,.3);color:var(--cyan);margin-bottom:20px}
+.core-card h3{font-size:1.55rem;margin-bottom:7px}.core-card p{font-size:.88rem;color:var(--muted)}
+.mini-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}.mini-tags span{font-size:.72rem;padding:6px 9px;border-radius:7px;background:rgba(255,255,255,.055);color:#c7d5e8}
+.float-chip{position:absolute;z-index:3;padding:12px 15px;border-radius:13px;border:1px solid var(--line);background:rgba(13,20,34,.9);box-shadow:0 12px 35px rgba(0,0,0,.25);font-size:.83rem;animation:float 5s ease-in-out infinite}
+.float-chip i{color:var(--cyan);margin-right:8px}.chip-a{top:42px;right:0}.chip-b{bottom:55px;left:0;animation-delay:-2s}
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(12,19,32,.68)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);padding:25px 0}
+.stat{padding:5px 25px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;font-family:'Space Grotesk';font-size:1.35rem}.stat span{font-size:.82rem;color:var(--muted)}
+section.section{padding:100px 0}
+.section-head{max-width:700px;margin-bottom:42px}.section-head.center{text-align:center;margin:0 auto 48px}
+.kicker{color:var(--cyan);font-size:.76rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:13px}
+h2{font-size:clamp(2rem,3.6vw,3.25rem);margin-bottom:15px}
+.section-head p{color:var(--muted);font-size:1rem}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.service-card,.product-card,.process-card{background:linear-gradient(145deg,rgba(17,28,46,.86),rgba(10,16,28,.86));border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.service-card:hover,.product-card:hover,.process-card:hover{transform:translateY(-7px);border-color:rgba(86,230,255,.42);box-shadow:0 18px 45px rgba(0,0,0,.2)}
+.icon-box{width:53px;height:53px;border-radius:15px;display:grid;place-items:center;color:var(--cyan);background:rgba(86,230,255,.09);border:1px solid rgba(86,230,255,.15);font-size:1.35rem;margin-bottom:22px}
+.service-card:nth-child(2) .icon-box{color:#a9aaff;background:rgba(93,124,255,.1)}.service-card:nth-child(3) .icon-box{color:#b8ff7a;background:rgba(184,255,122,.08)}.service-card:nth-child(4) .icon-box{color:#d0a9ff;background:rgba(167,123,255,.1)}
+.service-card h3{font-size:1.18rem;margin-bottom:10px}.service-card p{font-size:.9rem;color:var(--muted);margin-bottom:18px}.text-link{font-weight:700;font-size:.85rem;color:var(--cyan)}.text-link i{margin-left:5px;transition:transform .2s}.text-link:hover i{transform:translateX(4px)}
+.products{background:linear-gradient(180deg,transparent,rgba(19,31,51,.38),transparent)}
+.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.product-card{padding:0;overflow:hidden}
+.product-banner{min-height:190px;display:flex;align-items:center;justify-content:space-between;padding:30px;position:relative;overflow:hidden;background:radial-gradient(circle at 80% 20%,rgba(86,230,255,.22),transparent 40%),linear-gradient(120deg,#101e33,#0a1120)}
+.product-card:nth-child(2) .product-banner{background:radial-gradient(circle at 80% 20%,rgba(167,123,255,.26),transparent 40%),linear-gradient(120deg,#17172e,#0a1120)}
+.product-banner:after{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(255,255,255,.1);border-radius:50%;right:-55px;top:-80px;box-shadow:0 0 0 28px rgba(255,255,255,.025),0 0 0 58px rgba(255,255,255,.02)}
+.product-icon{font-size:4rem;color:var(--cyan);position:relative;z-index:1;text-shadow:0 0 35px rgba(86,230,255,.25)}.product-card:nth-child(2) .product-icon{color:#c2a3ff}
+.product-label{position:relative;z-index:1;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.18);border-radius:99px;padding:7px 11px;font-size:.72rem;color:#dbe5f5}
+.product-body{padding:27px 30px 30px}.product-body h3{font-size:1.5rem;margin-bottom:11px}.product-body p{color:var(--muted);font-size:.92rem;margin-bottom:20px}.product-features{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}.product-features span{font-size:.76rem;color:#c6d3e7;background:rgba(255,255,255,.045);border:1px solid var(--line);padding:6px 9px;border-radius:7px}
+.callout{border:1px solid rgba(86,230,255,.22);border-radius:28px;padding:42px;background:radial-gradient(ellipse at 100% 0%,rgba(93,124,255,.16),transparent 45%),linear-gradient(110deg,#101c2e,#0b1220);display:flex;justify-content:space-between;align-items:center;gap:30px}
+.callout h2{font-size:clamp(1.8rem,3vw,2.7rem);max-width:650px}.callout p{color:var(--muted);max-width:650px}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.process-card{padding:24px}.step-no{font-family:'Space Grotesk';font-size:.8rem;color:var(--cyan);letter-spacing:1px;margin-bottom:22px}.process-card h3{font-size:1.12rem;margin-bottom:9px}.process-card p{color:var(--muted);font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:42px 0 25px;background:rgba(5,9,16,.7)}
+.footer-main{display:flex;align-items:flex-start;justify-content:space-between;gap:35px;padding-bottom:32px}.footer-blurb{max-width:400px;color:var(--muted);font-size:.9rem;margin-top:14px}.footer-links{display:flex;gap:24px;flex-wrap:wrap;color:#b7c4d7;font-size:.88rem}.footer-links a:hover{color:var(--cyan)}.copyright{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#7f8da3;font-size:.8rem}.copyright strong{color:var(--cyan)}
+/* Booking modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(1,4,10,.78);backdrop-filter:blur(10px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.modal-backdrop.open{display:flex;animation:fadeIn .2s ease}
+.modal{width:min(720px,100%);max-height:92vh;overflow-y:auto;background:#0c1422;border:1px solid rgba(130,169,218,.25);border-radius:24px;box-shadow:0 30px 100px rgba(0,0,0,.6);padding:30px;animation:modalIn .25s ease}
+.modal-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:24px}.modal-head h2{font-size:1.8rem;margin-bottom:8px}.modal-head p{font-size:.9rem;color:var(--muted)}.close-modal{border:1px solid var(--line);background:rgba(255,255,255,.04);color:white;width:40px;height:40px;border-radius:12px;cursor:pointer;flex-shrink:0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:.82rem;font-weight:700;color:#d4deed}.field input,.field select,.field textarea{width:100%;background:#080e19;color:var(--text);border:1px solid rgba(151,184,226,.2);border-radius:10px;padding:12px 13px;outline:none;transition:border-color .2s}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan)}.field textarea{min-height:120px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:#65758d}.form-note{font-size:.78rem;color:var(--muted);margin:16px 0}.form-actions{display:flex;gap:12px;flex-wrap:wrap}.success-note{display:none;padding:13px;border-radius:10px;background:rgba(184,255,122,.08);border:1px solid rgba(184,255,122,.2);color:var(--lime);font-size:.85rem;margin-top:14px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(-1deg)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:15px}.hero-visual{min-height:380px}.services-grid{grid-template-columns:repeat(2,1fr)}.nav-links{gap:17px}.callout{align-items:flex-start;flex-direction:column}}
+@media(max-width:650px){header{height:72px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;left:5%;right:5%;top:72px;padding:20px;background:#0c1422;border:1px solid var(--line);border-radius:16px;flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{display:block;padding:12px}.nav>.btn{display:none}.hero{padding:70px 0 60px}.hero-visual{min-height:330px}.orbit{width:270px;height:270px}.orbit-two{width:205px;height:205px}.chip-a{right:-2px;top:15px}.chip-b{bottom:25px;left:-3px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:18px}.stat{padding:8px 12px;border-right:0}.services-grid,.products-grid,.process-grid{grid-template-columns:1fr}.section.section{padding:70px 0}.product-banner{min-height:160px}.callout{padding:28px}.footer-main{flex-direction:column}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.modal{padding:22px}.hero-actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="RADEEV TECH home"><span class="brand-mark"><i class="fa-solid fa-code"></i></span>RADEEV <span>TECH</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#solutions">Solutions</a><a href="#products">Products</a><a href="#process">How We Work</a><a href="#contact">Contact</a>
+    </nav>
+    <button class="btn btn-primary open-booking"><i class="fa-solid fa-calendar-check"></i> Book a Job</button>
+  </div>
+</header>
+<main id="home">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="pulse"></span> Digital solutions, engineered for impact</div>
+      <h1>We build <span class="gradient-text">powerful software</span> for ambitious ideas.</h1>
+      <p class="hero-copy">From desktop systems and intelligent web apps to Android and iOS experiences, RADEEV TECH turns complex challenges into polished, dependable digital products.</p>
+      <div class="hero-actions"><button class="btn btn-primary open-booking"><i class="fa-solid fa-paper-plane"></i> Book Your Project</button><a class="btn btn-outline" href="#products">Explore Our Products <i class="fa-solid fa-arrow-down"></i></a></div>
+      <div class="trust-row"><span><i class="fa-solid fa-circle-check"></i> Built around your workflow</span><span><i class="fa-solid fa-shield-halved"></i> Quality-focused delivery</span></div>
+    </div>
+    <div class="hero-visual" aria-label="Abstract software engineering illustration">
+      <div class="orbit"></div><div class="orbit orbit-two"></div>
+      <div class="float-chip chip-a"><i class="fa-brands fa-android"></i> Mobile experiences</div>
+      <div class="float-chip chip-b"><i class="fa-solid fa-bolt"></i> Smart digital systems</div>
+      <div class="core-card"><div class="core-top"><span>RADEEV / STUDIO</span><span class="status">READY TO BUILD</span></div><div class="core-symbol"><i class="fa-solid fa-terminal"></i></div><h3>Ideas → Reality</h3><p>Purpose-built technology. Thoughtful design. Practical results.</p><div class="mini-tags"><span>Windows</span><span>Web</span><span>Android</span><span>iOS</span></div></div>
+    </div>
+  </div>
+</section>
+<div class="stats"><div class="container stats-grid"><div class="stat"><strong>01 / 04</strong><span>One team, four platforms</span></div><div class="stat"><strong>Custom-built</strong><span>Designed for your needs</span></div><div class="stat"><strong>End-to-end</strong><span>From concept to launch</span></div><div class="stat"><strong>Human-first</strong><span>Support that listens</span></div></div></div>
+<section class="section" id="solutions"><div class="container">
+  <div class="section-head center reveal"><div class="kicker">What we build</div><h2>Technology that works <span class="gradient-text">as hard as you do.</span></h2><p>Choose a platform or combine them into one connected solution. We focus on usability, performance, and a premium finish.</p></div>
+  <div class="services-grid">
+    <article class="service-card reveal"><div class="icon-box"><i class="fa-brands fa-windows"></i></div><h3>Windows Software</h3><p>Desktop applications, business management tools, utilities, and workflow automation built for everyday productivity.</p><a class="text-link open-booking-link" href="#book">Discuss desktop software <i class="fa-solid fa-arrow-right"></i></a></article>
+    <article class="service-card reveal"><div class="icon-box"><i class="fa-solid fa-globe"></i></div><h3>Web Applications</h3><p>Responsive websites, admin dashboards, portals, and cloud-connected platforms that work across modern browsers.</p><a class="text-link open-booking-link" href="#book">Plan a web app <i class="fa-solid fa-arrow-right"></i></a></article>
+    <article class="service-card reveal"><div class="icon-box"><i class="fa-brands fa-android"></i></div><h3>Android Apps</h3><p>Modern Android applications with intuitive interfaces, reliable backend integration, and experiences made for mobile.</p><a class="text-link open-booking-link" href="#book">Build for Android <i class="fa-solid fa-arrow-right"></i></a></article>
+    <article class="service-card reveal"><div class="icon-box"><i class="fa-brands fa-apple"></i></div><h3>iOS Applications</h3><p>iPhone and iPad app experiences planned around your audience, product goals, and the Apple ecosystem.</p><a class="text-link open-booking-link" href="#book">Explore iOS development <i class="fa-solid fa-arrow-right"></i></a></article>
+  </div>
+</div></section>
+<section class="section products" id="products"><div class="container">
+  <div class="section-head reveal"><div class="kicker">Featured products</div><h2>Our work. <span class="gradient-text">Real-world solutions.</span></h2><p>Explore two products from the RADEEV TECH ecosystem, built to serve different needs with technology.</p></div>
+  <div class="products-grid">
+    <article class="product-card reveal"><div class="product-banner"><div class="product-icon"><i class="fa-solid fa-school"></i></div><span class="product-label">EDTECH SUITE</span></div><div class="product-body"><h3>RADEEV International School Suite App</h3><p>A school-management solution designed to bring essential school operations into a more connected digital workflow, supporting administrators, teachers, and school communities.</p><div class="product-features"><span>School administration</span><span>Academic workflows</span><span>Digital records</span></div><button class="btn btn-outline open-booking" data-interest="RADEEV International School Suite App">Enquire about this product <i class="fa-solid fa-arrow-right"></i></button></div></article>
+    <article class="product-card reveal"><div class="product-banner"><div class="product-icon"><i class="fa-solid fa-cubes-stacked"></i></div><span class="product-label">DIGITAL ECOSYSTEM</span></div><div class="product-body"><h3>ORIX REVOLUTION App</h3><p>A digital platform concept bringing together app-based engagement, tasks, referrals, and an ORIX-focused ecosystem. Contact us for product information and availability.</p><div class="product-features"><span>Digital engagement</span><span>Tasks & referrals</span><span>ORIX ecosystem</span></div><button class="btn btn-outline open-booking" data-interest="ORIX REVOLUTION App">Enquire about this product <i class="fa-solid fa-arrow-right"></i></button></div></article>
+  </div>
+</div></section>
+<section class="section" id="process"><div class="container">
+  <div class="section-head center reveal"><div class="kicker">A clear process</div><h2>From first conversation to <span class="gradient-text">finished product.</span></h2><p>Tell us what you need. We'll use the details to understand your project and discuss the next steps.</p></div>
+  <div class="process-grid"><article class="process-card reveal"><div class="step-no">STEP 01 / DISCOVER</div><h3>Share your idea</h3><p>Describe the challenge, your audience, preferred platform, budget range, and timeline.</p></article><article class="process-card reveal"><div class="step-no">STEP 02 / PLAN</div><h3>Shape the solution</h3><p>We review your requirements and discuss a practical approach, scope, and delivery plan.</p></article><article class="process-card reveal"><div class="step-no">STEP 03 / BUILD</div><h3>Bring it to life</h3><p>Move forward with an agreed plan focused on quality, clear communication, and useful outcomes.</p></article></div>
+</div></section>
+<section class="section" id="contact"><div class="container"><div class="callout reveal"><div><div class="kicker">Have a project in mind?</div><h2>Let's build something <span class="gradient-text">remarkable.</span></h2><p>Tell RADEEV TECH what you want to create. Submit your project details and contact address to start the conversation.</p></div><button class="btn btn-primary open-booking"><i class="fa-solid fa-calendar-check"></i> Book a Job Now</button></div></div></section>
+</main>
+<footer><div class="container"><div class="footer-main"><div><a class="brand" href="#home"><span class="brand-mark"><i class="fa-solid fa-code"></i></span>RADEEV <span>TECH</span></a><p class="footer-blurb">Powerful software for Windows, web, Android, and iOS. Thoughtful engineering for businesses, institutions, and bold ideas.</p></div><div class="footer-links"><a href="#solutions">Solutions</a><a href="#products">Products</a><a href="#process">How We Work</a><a href="#" class="open-booking-link">Book a Job</a></div></div><div class="copyright"><span>© <span id="year"></span> RADEEV TECH. All rights reserved.</span><span>Engineered by <strong>D.D.S.</strong></span></div></div></footer>
 
-    <!-- HEADER / NAVBAR -->
-    <header>
-        <div class="logo">RAD<span>EEV</span></div>
-        <nav>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#modules">Modules</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <a href="#" class="cta-btn">Login to Portal</a>
-    </header>
+<div class="modal-backdrop" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head"><div><div class="kicker">Project booking</div><h2 id="modalTitle">Tell us about your job.</h2><p>Share the details below so we can understand what you need and how to reach you.</p></div><button class="close-modal" id="closeModal" aria-label="Close booking form"><i class="fa-solid fa-xmark"></i></button></div>
+    <form id="bookingForm">
+      <div class="form-grid">
+        <div class="field"><label for="fullName">Full name *</label><input id="fullName" name="fullName" autocomplete="name" required placeholder="Your name"></div>
+        <div class="field"><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <div class="field"><label for="phone">Phone / WhatsApp *</label><input id="phone" name="phone" autocomplete="tel" required placeholder="+234 ..."></div>
+        <div class="field"><label for="contactAddress">Contact address / location *</label><input id="contactAddress" name="contactAddress" autocomplete="street-address" required placeholder="City, state, or business address"></div>
+        <div class="field"><label for="service">What do you need? *</label><select id="service" name="service" required><option value="">Select a service</option><option>Windows software</option><option>Web application / website</option><option>Android application</option><option>iOS application</option><option>School Suite App</option><option>ORIX REVOLUTION App enquiry</option><option>Maintenance / bug fixing</option><option>Other digital service</option></select></div>
+        <div class="field"><label for="budget">Estimated budget</label><select id="budget" name="budget"><option value="">Select a range (optional)</option><option>Under ₦100,000</option><option>₦100,000 – ₦300,000</option><option>₦300,000 – ₦750,000</option><option>₦750,000 – ₦1,500,000</option><option>Above ₦1,500,000</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="timeline">Preferred timeline</label><select id="timeline" name="timeline"><option value="">Select timeline (optional)</option><option>As soon as possible</option><option>Within 2–4 weeks</option><option>Within 1–3 months</option><option>Flexible</option></select></div>
+        <div class="field"><label for="contactMethod">Preferred contact method</label><select id="contactMethod" name="contactMethod"><option>Email</option><option>Phone call</option><option>WhatsApp</option></select></div>
+        <div class="field full"><label for="jobDetails">Job details / requirements *</label><textarea id="jobDetails" name="jobDetails" required placeholder="Describe what you want built, the problem it should solve, key features, and any relevant details..."></textarea></div>
+      </div>
+      <p class="form-note"><i class="fa-solid fa-lock"></i> Your details are included in the booking request you prepare. Please avoid sharing passwords or sensitive financial information.</p>
+      <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Prepare Booking Request</button><button type="button" class="btn btn-outline" id="cancelModal">Cancel</button></div>
+      <div class="success-note" id="successNote" role="status">Your email app should open with the booking request prepared. Review it and press Send to submit your enquiry.</div>
+    </form>
+  </div>
+</div>
+<script>
+const modal=document.getElementById('bookingModal');
+const form=document.getElementById('bookingForm');
+const serviceSelect=document.getElementById('service');
+const successNote=document.getElementById('successNote');
+function openModal(interest=''){modal.classList.add('open');document.body.style.overflow='hidden';if(interest){const match=[...serviceSelect.options].find(o=>o.text.toLowerCase().includes(interest.toLowerCase())||interest.toLowerCase().includes(o.text.toLowerCase()));if(match)serviceSelect.value=match.value;}setTimeout(()=>document.getElementById('fullName').focus(),100)}
+function closeModal(){modal.classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.open-booking').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.interest||'')));
+document.querySelectorAll('.open-booking-link').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openModal()}));
+document.getElementById('closeModal').addEventListener('click',closeModal);
+document.getElementById('cancelModal').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!form.reportValidity())return;
+  const d=new FormData(form);
+  const subject=encodeURIComponent('RADEEV TECH Job Booking — '+d.get('service'));
+  const body=encodeURIComponent(
+`RADEEV TECH JOB BOOKING REQUEST
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>Transform Your School with <span>RADEEV</span></h1>
-        <p>The ultimate all-in-one educational platform. Streamline 7-step student enrollments, automate grading with our Result Compiler, and give directors real-time demographic insights.</p>
-        <div class="hero-buttons">
-            <a href="#" class="hero-btn-primary"><i class="fa-solid fa-rocket"></i> Request Demo</a>
-            <a href="#features" class="hero-btn-outline">Explore Features</a>
-        </div>
-    </section>
+Full name: ${d.get('fullName')}
+Email: ${d.get('email')}
+Phone / WhatsApp: ${d.get('phone')}
+Contact address / location: ${d.get('contactAddress')}
 
-    <!-- FEATURES SECTION -->
-    <section id="features" class="features">
-        <div class="features-header">
-            <h2>Everything You Need to Run Your School</h2>
-            <p>Built for the modern African curriculum, encompassing Nursery, Primary, JSS, and SSS.</p>
-        </div>
+Service: ${d.get('service')}
+Estimated budget: ${d.get('budget')||'Not specified'}
+Preferred timeline: ${d.get('timeline')||'Not specified'}
+Preferred contact method: ${d.get('contactMethod')}
 
-        <div class="feature-grid">
-            <!-- Feature 1 -->
-            <div class="feature-card">
-                <div class="feature-icon icon-blue">
-                    <i class="fa-solid fa-chart-pie"></i>
-                </div>
-                <h3>Director's Hub</h3>
-                <p>Get real-time graphical analytics on student demographics, gender ratios, academic pass rates, and overall campus health indexes.</p>
-            </div>
+JOB DETAILS:
+${d.get('jobDetails')}
 
-            <!-- Feature 2 -->
-            <div class="feature-card">
-                <div class="feature-icon icon-green">
-                    <i class="fa-solid fa-file-contract"></i>
-                </div>
-                <h3>Result Compiler</h3>
-                <p>Automate grade processing. Teachers can fetch scores via local WiFi CBT networks and seamlessly push generated report cards to the cloud.</p>
-            </div>
-
-            <!-- Feature 3 -->
-            <div class="feature-card">
-                <div class="feature-icon icon-gold">
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
-                <h3>7-Step Enrollment</h3>
-                <p>A digitized, beautifully animated wizard for capturing student identity, medical history, curriculum tracks, and guardian details.</p>
-            </div>
-
-            <!-- Feature 4 -->
-            <div class="feature-card">
-                <div class="feature-icon icon-purple">
-                    <i class="fa-solid fa-book-open"></i>
-                </div>
-                <h3>Subject Manager</h3>
-                <p>A categorized curriculum engine (Science, Art, Tech) allowing administrators to instantly assign subjects to classes, teachers, and timetables.</p>
-            </div>
-            
-            <!-- Feature 5 -->
-            <div class="feature-card">
-                <div class="feature-icon icon-blue">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
-                <h3>CBT Engine</h3>
-                <p>Conduct secure, local-network or cloud-based Computer Based Tests (CBT). Auto-grade objective questions and sync directly to student records.</p>
-            </div>
-
-            <!-- Feature 6 -->
-            <div class="feature-card">
-                <div class="feature-icon icon-green">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                </div>
-                <h3>Teacher Portal</h3>
-                <p>Equip educators with tools to manage daily schedules, JSON lesson notes, typing tutors, and continuous assessment tracking.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contact">
-        <div class="footer-content">
-            <h3>RADEEV</h3>
-            <p>Next-Generation Educational Architecture</p>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 RADEEV School Management System. All Rights Reserved.</p>
-            <p>Engineered by <span class="dev-credit">DEXTIMANI DIGITAL SERVICES</span></p>
-        </div>
-    </footer>
-
-    <!-- Smooth Scrolling Script -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+Please contact me to discuss this request.`);
+  document.getElementById('successNote').style.display='block';
+  window.location.href='mailto:dextimanidigitalservices@gmail.com?subject='+subject+'&body='+body;
+});
+document.getElementById('year').textContent=new Date().getFullYear();
+const toggle=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>{const isOpen=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(isOpen));toggle.innerHTML=isOpen?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>'});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.innerHTML='<i class="fa-solid fa-bars"></i>'}));
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
